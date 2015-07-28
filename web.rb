@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sablon'
 
 get '/' do
-  "Hello, world"
+
       template = Sablon.template(File.expand_path("TestExecuteTemplate.docx"))
     
     context = {
@@ -10,6 +10,8 @@ get '/' do
       }
     
     template.render_to_file File.expand_path("output.docx"), context
+    
+     return "Hello, world"
 end
 
 
