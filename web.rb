@@ -11,7 +11,7 @@ get '/' do
     
     template.render_to_file File.join("public", "output.docx"), context
 
-    get '/:output.docx' do |file|
+    get '/:TestExecuteTemplate.docx' do |file|
       file = File.join('/public', file)
       send_file(file, :disposition => 'attachment', :filename => File.basename(file))
     end
