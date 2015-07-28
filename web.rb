@@ -3,15 +3,15 @@ require 'sablon'
 
 get '/' do
 
-      template = Sablon.template(File.join("public", "TestExecuteTemplate.docx"))
+      template = Sablon.template(File.absolute_path("TestExecuteTemplate.docx"))
     
     context = {
       firstname: "FIRSTY"
       }
     
-    template.render_to_file File.join("public", "output.docx"), context
+    template.render_to_file File.absolute_path("output.docx"), context
 
-    send_file 'TestExecuteTemplate.docx'
+    send_file "output.docx"
 
 
      return "Hello, world"
