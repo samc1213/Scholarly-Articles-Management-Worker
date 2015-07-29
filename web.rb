@@ -3,8 +3,7 @@ require 'sablon'
 require 'mongo'
 require 'aws-sdk'
 
-get '/jobs' do
-  
+post '/jobs' do
     id = params[:id]
     # mongo_uri = "mongodb://heroku_v7w2qftd:a5h7slci8p0b2p9nt7qe96hmvv@ds027483.mongolab.com:27483/heroku_v7w2qftd"
     # db = Mongo::Client.new(mongo_uri, :database => 'heroku_v7w2qftd')
