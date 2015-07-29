@@ -4,6 +4,7 @@ require 'mongo'
 require 'aws-sdk'
 
 post '/jobs' do
+    
     id = params[:id]
     # mongo_uri = "mongodb://heroku_v7w2qftd:a5h7slci8p0b2p9nt7qe96hmvv@ds027483.mongolab.com:27483/heroku_v7w2qftd"
     # db = Mongo::Client.new(mongo_uri, :database => 'heroku_v7w2qftd')
@@ -29,8 +30,8 @@ post '/jobs' do
 # 
 #     
     # send_file "output.docx"
-
-     return id
+    status 200
+     body '#{id}'
 end
 
 
