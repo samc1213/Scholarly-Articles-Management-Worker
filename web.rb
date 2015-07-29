@@ -9,7 +9,6 @@ get '/' do
     
     job = db[:messages].find({:done => 'false'}).find_one_and_replace({done: 'true'})
     
-    return job.to_str
 
     template = Sablon.template(File.absolute_path("TestExecuteTemplate.docx"))
     
