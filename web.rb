@@ -16,9 +16,11 @@ get '/' do
     
     template.render_to_file File.absolute_path("output.docx"), context
     
+    fs = Mongo::GridFileSystem.new(client)
+    
     file = File.open('output.docx')
-    grid_file = Mongo::Grid::File.new(file.read, :filename => File.basename(file.path))
-     client[:files].insert_one(grid_file)
+    grid = Mongo::Grid.new(client)
+    Mongo::Grid.put(file)
 
     send_file "output.docx"
 
