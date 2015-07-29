@@ -16,7 +16,7 @@ get '/' do
     
     template.render_to_file File.absolute_path("output.docx"), context
        
-    grid = Grid.new(db)
+    grid = Mongo::Grid.new(db)
     
     send_file "output.docx"
 
