@@ -19,9 +19,13 @@ get '/' do
        
     
     doc = File.open("output.docx")
-    AWS.config(access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
-           secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'])
-    s3 = Aws::S3::Resource.new(region:'us-west-2')
+    
+    Aws.config.update({
+        region: 'us-west-2',
+        credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']),
+      })
+
+    s3 = Aws::S3::Client.new
     obj = s3.bucket('cpgrantsdocs').object('docdoc')
     obj.upload_file('output.docx')
 
