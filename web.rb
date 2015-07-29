@@ -5,7 +5,7 @@ include Mongo
 
 get '/' do
     mongo_uri = "mongodb://heroku_v7w2qftd:a5h7slci8p0b2p9nt7qe96hmvv@ds027483.mongolab.com:27483/heroku_v7w2qftd"
-    @db = MongoClient.new(mongo_uri).db('heroku_v7w2qftd')
+    @db = ::MongoClient.new(mongo_uri).db('heroku_v7w2qftd')
     @db[:queue].insert_one({message: 'whatsgoodmofos'})
 
 
