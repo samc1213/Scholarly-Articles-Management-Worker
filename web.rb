@@ -19,7 +19,6 @@ post '/jobs' do
     
     template.render_to_file File.absolute_path("output.docx"), context
        
-    
     doc = File.open("output.docx")
     
     
@@ -29,6 +28,10 @@ post '/jobs' do
 
      status 200
      body 'DONE'
+end
+
+get '/' do
+  send_file 'output.docx'
 end
 
 
