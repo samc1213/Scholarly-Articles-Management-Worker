@@ -7,7 +7,7 @@ get '/' do
     mongo_uri = "mongodb://heroku_v7w2qftd:a5h7slci8p0b2p9nt7qe96hmvv@ds027483.mongolab.com:27483/heroku_v7w2qftd"
     db = Mongo::Client.new(mongo_uri, :database => 'heroku_v7w2qftd')
     
-    job = db[:messages].findAndModify({query: {done: 'false'}, update: {done: 'true'}})
+    job = db[:messages].find({:done => 'false'}).find_one_and_replace({done: 'true'})
     
     return job
 
