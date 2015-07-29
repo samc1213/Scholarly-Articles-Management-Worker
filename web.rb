@@ -9,7 +9,7 @@ post '/jobs' do
     mongo_uri = "mongodb://heroku_v7w2qftd:a5h7slci8p0b2p9nt7qe96hmvv@ds027483.mongolab.com:27483/heroku_v7w2qftd"
     db = Mongo::Client.new(mongo_uri, :database => 'heroku_v7w2qftd')
     
-    job = db[:messages].find({:_id => BSON::ObjectId(id)}).find_one_and_update({done: 'true'})
+    job = db[:messages].find({:_id => BSON::ObjectId(id)}).find_one_and_update('$set' => {done: 'true'})
     
     template = Sablon.template(File.absolute_path("TestExecuteTemplate.docx"))
     
