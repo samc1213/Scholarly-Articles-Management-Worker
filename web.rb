@@ -17,12 +17,7 @@ post '/jobs' do
       firstname: "FIRSTY"
       }
     
-    template.render_to_file File.absolute_path("TestExecuteTemplate.docx"), context
+    template.render_to_file File.absolute_path("output.docx"), context
+    
+    send_file 'output.docx'
 end
-
-get '/' do
-  send_file 'output.docx'
-end
-
-
-
