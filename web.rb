@@ -26,13 +26,10 @@ post '/jobs' do
     obj = s3.bucket('cpgrantsdocs').object('docdoc')
     obj.upload_file('output.docx')
 
-     status 200
-     body 'DONE'
 end
 
 get '/' do
   send_file 'output.docx'
 end
-
 
 
