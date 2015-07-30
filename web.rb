@@ -18,18 +18,11 @@ post '/jobs' do
       }
     
     template.render_to_file File.absolute_path("output.docx"), context
-       
-    doc = File.open("output.docx")
-    
-    
-    s3 = Aws::S3::Resource.new(region:'us-west-2', credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']))
-    obj = s3.bucket('cpgrantsdocs').object('docdoc')
-    obj.upload_file('output.docx')
-
 end
 
 get '/' do
   send_file 'output.docx'
 end
+
 
 
