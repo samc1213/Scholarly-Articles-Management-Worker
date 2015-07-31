@@ -9,7 +9,7 @@ post '/jobs' do
     data = params[:data]
     rubydata = JSON.parse(data)
     
-    grant = Struct.new(:name, :status, :source, :amount, :awardperiod1, :awardperiod2, :piamount, :specify, :description)
+    grant = Struct.new(:name, :status, :source, :amount, :awardperiod1, :awardperiod2, :piamount, :specify, :description, :firstname, :lastname)
     
     template = Sablon.template(File.absolute_path("Template.docx"))
     
@@ -38,7 +38,7 @@ post '/jobs' do
         rd["status"] = 'T'
       end
       
-      newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"])
+      newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"], rd["firstname"], rd["lastname"])
       grantarray.push(newgrant)
     end
     
