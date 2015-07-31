@@ -14,13 +14,15 @@ post '/jobs' do
     template = Sablon.template(File.absolute_path("Template.docx"))
     
     grantarray = []
+    puts rubydata.inspect
+    puts rubydata.class
     
     each rubydata do |rd|
       newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"])
       grantarray.push(newgrant)
     end
     
-    puts rubydata.inspect
+    
     
     context = {
       grants: grantarray
