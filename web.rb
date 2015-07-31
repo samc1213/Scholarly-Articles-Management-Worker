@@ -9,12 +9,14 @@ post '/jobs' do
     data = params[:data]
     rubydata = JSON.parse(data)
     
-    name = rubydata[0]["name"]
+    grant = 
     
     template = Sablon.template(File.absolute_path("TestExecuteTemplate.docx"))
     
     context = {
-      firstname: name
+      grants: [grant.new(rubydata[0]["name"]),
+              grant.new(rubydata[1]["name"]),
+              grant.new(rubydata[2]["name"])]
       }
     
     template.render_to_file File.absolute_path("output.docx"), context    
