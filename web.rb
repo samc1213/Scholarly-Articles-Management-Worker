@@ -18,6 +18,15 @@ post '/jobs' do
     puts rubydata.class
     
     rubydata.each do |rd|
+      rd["awardperiod1"].gsub('-','/')
+      rd["awardperiod2"].gsub('-','/')
+      if rd["specify"] == 'Calendar'
+        rd["specify"] = 'C'
+      elsif rd["specify"] == 'Academic'
+        rd["specify"] = 'A'
+      elsif rd["specify"] == 'Summer'
+        rd["specify"] = 'S'
+      end
       newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"])
       grantarray.push(newgrant)
     end
