@@ -18,8 +18,8 @@ post '/jobs' do
     puts rubydata.class
     
     rubydata.each do |rd|
-      rd["awardperiod1"].gsub('-','/')
-      rd["awardperiod2"].gsub('-','/')
+      rd["awardperiod1"] = rd["awardperiod1"].gsub('-','/')
+      rd["awardperiod2"] = rd["awardperiod2"].gsub('-','/')
       if rd["specify"] == 'Calendar'
         rd["specify"] = 'C'
       elsif rd["specify"] == 'Academic'
@@ -27,6 +27,17 @@ post '/jobs' do
       elsif rd["specify"] == 'Summer'
         rd["specify"] = 'S'
       end
+      
+      if rd["status"] == 'Current'
+        rd["status"] = 'C'
+      elsif rd["status"] == 'Pending'
+        rd["status"] = 'P'
+      elsif rd["status"] == 'Submission Planned'
+        rd["status"] = 'S'
+      elsif rd["status"] == 'Transfer of Support'
+        rd["status"] = 'T'
+      end
+      
       newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"])
       grantarray.push(newgrant)
     end
