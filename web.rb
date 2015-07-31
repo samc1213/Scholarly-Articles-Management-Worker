@@ -20,6 +20,8 @@ post '/jobs' do
       grantarray.push(newgrant)
     end
     
+    puts rubydata.inspect
+    
     context = {
       grants: grantarray
     }
