@@ -9,15 +9,20 @@ post '/jobs' do
     data = params[:data]
     rubydata = JSON.parse(data)
     
-    grant = Struct.new(:name)
+    grant = Struct.new(:name, :status, :source, :amount, :awardperiod1, :awardperiod2, :piamount, :specify, :description)
     
-    template = Sablon.template(File.absolute_path("TestExecuteTemplate.docx"))
+    template = Sablon.template(File.absolute_path("Template.docx"))
+    
+    grantarray = []
+    
+    each rubydata do |rd|
+      newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"])
+      grantarray.push(newgrant)
+    end
     
     context = {
-      grants: [grant.new(rubydata[0]["name"]),
-              grant.new(rubydata[1]["name"]),
-              grant.new(rubydata[2]["name"])]
-      }
+      grants: grantarray
+    }
     
     template.render_to_file File.absolute_path("output.docx"), context    
     
