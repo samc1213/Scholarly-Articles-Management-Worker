@@ -9,7 +9,7 @@ post '/jobs' do
     data = params[:data]
     rubydata = JSON.parse(data)
     
-    grant = 
+    grant = Struct.new(:name)
     
     template = Sablon.template(File.absolute_path("TestExecuteTemplate.docx"))
     
