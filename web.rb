@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sablon'
 require 'mongo'
 require 'aws-sdk'
+require 'json'
 
 post '/jobs' do
     id = params[:id]
