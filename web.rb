@@ -38,16 +38,14 @@ post '/jobs' do
         rd["status"] = 'T'
       end
       
-      if rd["middlename"] == nil
-        puts 'nil'
-        rd["middlename"] = ' '
+      if rd["middlename"] == ''
+        middlename = ' '
       else
-        rd["middlename"] = ' ' + rd["middlename"] + ' '
-        puts 'nonil'
+        middlename = ' ' + rd["middlename"] + ' '
       end
       
       
-      newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"], rd["firstname"], rd["lastname"], rd["middlename"], rd["location"])
+      newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"], rd["firstname"], rd["lastname"], middlename, rd["location"])
       grantarray.push(newgrant)
     end
     
