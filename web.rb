@@ -39,9 +39,11 @@ post '/jobs' do
       end
       
       if rd["middlename"] == nil
+        puts 'nil'
         rd["middlename"] = ' '
       else
         rd["middlename"] = ' ' + rd["middlename"] + ' '
+        puts 'nonil'
       end
       
       
