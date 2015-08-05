@@ -41,7 +41,7 @@ post '/jobs' do
       if rd["middlename"] == ''
         middlename = ' '
       else
-        middlename = ' ' + rd["middlename"] + ' '
+        middlename = ' #{rd["middlename"]} '
       end
       
       
