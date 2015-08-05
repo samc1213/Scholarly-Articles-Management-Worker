@@ -38,7 +38,7 @@ post '/jobs' do
         rd["status"] = 'T'
       end
       
-      if rd["middlename"] == ''
+      if rd["middlename"] == nil
         rd["middlename"] = ' '
       else
         rd["middlename"] = ' ' + rd["middlename"] + ' '
