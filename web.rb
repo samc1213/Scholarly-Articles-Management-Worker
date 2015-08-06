@@ -18,8 +18,6 @@ post '/jobs' do
     puts rubydata.class
     
     rubydata.each do |rd|
-      rd["awardperiod1"] = rd["awardperiod1"].gsub('-','/')
-      rd["awardperiod2"] = rd["awardperiod2"].gsub('-','/')
       if rd["specify"] == 'Calendar'
         rd["specify"] = 'C'
       elsif rd["specify"] == 'Academic'
