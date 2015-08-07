@@ -19,13 +19,13 @@ post '/jobs' do
     
     rubydata.each do |rd|
       if rd["apersonmonths"] != ''
-        rd['apersonmonths'] =  rd['apersonmonths'] + ' A '
+        rd['apersonmonths'] =  rd['apersonmonths'] + 'A '
       end
       if rd["cpersonmonths"] != ''
-        rd['cpersonmonths'] =  rd['cpersonmonths'] + ' C '
+        rd['cpersonmonths'] =  rd['cpersonmonths'] + 'C'
       end
       if rd["spersonmonths"] != ''
-        rd['spersonmonths'] =  rd['spersonmonths'] + ' S'
+        rd['spersonmonths'] =  rd['spersonmonths'] + 'S'
       end
       
       
