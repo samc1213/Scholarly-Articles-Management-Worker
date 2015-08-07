@@ -9,7 +9,7 @@ post '/jobs' do
     data = params[:data]
     rubydata = JSON.parse(data)
     
-    grant = Struct.new(:name, :status, :source, :amount, :awardperiod1, :awardperiod2, :piamount, :specify, :description, :firstname, :lastname, :middlename, :location)
+    grant = Struct.new(:name, :status, :source, :amount, :awardperiod1, :awardperiod2, :piamount, :description, :firstname, :lastname, :middlename, :location, :apersonmonths, :cpersonmonths, :spersonmonths)
     
     template = Sablon.template(File.absolute_path("Template.docx"))
     
@@ -18,13 +18,16 @@ post '/jobs' do
     puts rubydata.class
     
     rubydata.each do |rd|
-      if rd["specify"] == 'Calendar'
-        rd["specify"] = 'C'
-      elsif rd["specify"] == 'Academic'
-        rd["specify"] = 'A'
-      elsif rd["specify"] == 'Summer'
-        rd["specify"] = 'S'
+      if rd["apersonmonths"] != ''
+        rd['apersonmonths'] =  rd['apersonmonths'] + ' A '
       end
+      if rd["cpersonmonths"] != ''
+        rd['cpersonmonths'] =  rd['cpersonmonths'] + ' C '
+      end
+      if rd["spersonmonths"] != ''
+        rd['spersonmonths'] =  rd['spersonmonths'] + ' S'
+      end
+      
       
       if rd["status"] == 'Current'
         rd["status"] = 'C'
@@ -36,7 +39,7 @@ post '/jobs' do
         rd["status"] = 'T'
       end
       
-      newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["specify"], rd["description"], rd["firstname"], rd["lastname"], rd["middlename"], rd["location"])
+      newgrant = grant.new(rd["name"], rd["status"], rd["source"], rd["amount"], rd["awardperiod1"], rd["awardperiod2"], rd["piamount"], rd["description"], rd["firstname"], rd["lastname"], rd["middlename"], rd["location"], rd["apersonmonths"], rd["cpersonmonths"], rd["spersonmonths"])
       grantarray.push(newgrant)
     end
     
