@@ -17,7 +17,7 @@ post '/jobs' do
       template = Sablon.template(File.absolute_path("DOETemplate.docx"))
     else
       keystr = user + '/' + choice
-      s3 = Aws::S3::Resource.new(region:'us-west-2', credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']))
+      s3 = Aws::S3::Client.new(region:'us-west-2', credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']))
       File.open('filename', 'wb') do |file|
         reap = s3.get_object({ bucket:'cpgrantstemplates', key:keystr }, target: "CustomTemplate.docx")
       end
