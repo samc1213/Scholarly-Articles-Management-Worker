@@ -1,4 +1,4 @@
-# Scholarly Articles Management Worker
+# Scholarly Awards Management Worker
 
 ##Summary
 
